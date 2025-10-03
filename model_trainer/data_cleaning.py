@@ -1,4 +1,4 @@
-'''data cleaning class'''
+'''data cleaning and re-labelling'''
 
 import os
 
@@ -23,5 +23,5 @@ def change_one_to_two(folder_path):
 if __name__ == '__main__':
     # change folder Sentiment Labelled Sentences Data Set
     current_file_path = os.path.abspath(os.path.dirname(__file__))
-    dataset_path = os.path.join(current_file_path, "..", 'dataset', "Sentiment Labelled Sentences Data Set")
+    dataset_path = os.path.join(current_file_path, "..", 'dataset', "Sentiment Labelled Sentences Data Set2")
     change_one_to_two(dataset_path)
