@@ -1,13 +1,14 @@
 '''Slot signals of widgets in ui_mainwindow'''
 
 # python package
-from PySide6.QtWidgets import QWidget, QFileDialog
+from PySide6.QtWidgets import QFileDialog
 from PySide6.QtGui import QPixmap
 from PySide6.QtCore import Qt
 from PIL import Image, ImageQt
 
 # local module
 from model_trainer.text_model_trainer import BERTTrainer
+from model_trainer.pic_model_trainer import DefectDetector
 from gui.console import Console
 
 
@@ -31,11 +32,13 @@ class Ui_function(object):
         )
         self.main_window.picture_label.setPixmap(pixmap)
         self.console.console_writing("Image selected successfully")
-        return qt_img
+        return file_path
 
     def text_analyse(self):
         '''text analysis slot'''
         text = self.main_window.text_enter.toPlainText()
+        if text == "":
+            return
         self.text_analyser = BERTTrainer(main_window = self.main_window)
 
         # using model analyser in text_model_trainer.py
@@ -54,9 +57,26 @@ class Ui_function(object):
         self.main_window.result_label.setText(result_text)
         self.console.console_writing("Reasoning is Finished")
 
-    def picture_analyse(self, qt_img = None):
+    def picture_analyse(self, img_path = None):
         '''picture analysis slot'''
-        pass
+        if img_path is None:
+            return
+
+        self.picture_analyser = DefectDetector()
+
+        # detect fault
+        result = self.picture_analyser.detect_defects(img_path, threshold=0.5)
+
+        if result:
+            # result output area
+            status = "Have problem" if result['has_defect'] else "Normal"
+            self.console.console_writing(
+                f"Detect Result: {status}\n"
+                f"Abnormal score: {result['defect_score']:.4f}"
+            )
+            print(f"Detect Result: {status}")
+            print(f"Abnormal score: {result['defect_score']:.4f}")
+
 
     def clear_result(self):
         '''clear text in console and result widget'''

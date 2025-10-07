@@ -15,6 +15,7 @@ This project is a demo of customer feedback analysis software.
 # Windows PowerShell
 pip install uv
 uv sync
+pip install anomalib[vlm_clip]
 ```
 **Demo Entrance :** ```main.py```
 **Model Training Entrance :** ```model_trainer/main_model_train.py```

@@ -6,5 +6,6 @@ class Console:
         self.main_window = main_window
 
     def console_writing(self, text):
-        original_text = self.main_window.console.text()
-        self.main_window.console.setText(original_text + "\n" + str(text) + "\n")
+        current_text = self.main_window.console.text()
+        new_text = current_text + str(text) + '\n'
+        self.main_window.console.setText(new_text)

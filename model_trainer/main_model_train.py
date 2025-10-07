@@ -69,7 +69,7 @@ def main(text_folder, file_type='txt'):
 
     # start training, using BERT class in text model trainer.py
     print("Start training...")
-    trainer.train(epochs=3, learning_rate=2e-5)
+    trainer.train(epochs=12, learning_rate=2e-5)
 
     # save model
     current_file_path = os.path.abspath(os.path.dirname(__file__))
@@ -78,5 +78,5 @@ def main(text_folder, file_type='txt'):
 
 
 if __name__ == "__main__":
-    text_folder = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "dataset", "Amazon feedback")
-    main(text_folder, file_type='xlsx')
+    text_folder = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "dataset", "Sentiment Labelled Sentences Data Set")
+    main(text_folder, file_type='txt')

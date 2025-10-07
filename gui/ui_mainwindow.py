@@ -13,8 +13,9 @@ class Demo_gui(QWidget, Ui_software_widget):
         self.ui_function = Ui_function(self)
 
         # picture area button event
-        self.qt_img = self.select_picture.clicked.connect(self.ui_function.get_img)  # return image file
-        self.pic_analyse_btn.clicked.connect(lambda : self.ui_function.picture_analyse(self.qt_img))
+        self.file_path = self.select_picture.clicked.connect(self.ui_function.get_img)  # return image file
+
+        self.pic_analyse_btn.clicked.connect(lambda : self.ui_function.picture_analyse(self.file_path))
 
         # text area button event
         self.text_analyse_btn.clicked.connect(self.ui_function.text_analyse)
