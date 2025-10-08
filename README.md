@@ -32,8 +32,8 @@ pip install anomalib[vlm_clip]
 
 ## How to Use
 1. Set up environment
-2. Download model file from [here]()
-3. Insert model file, where the file path should be ```Customer-feedback-analysis-software-demo/model```
+2. Download model file from [here](https://drive.google.com/drive/folders/1HtzvoRDriXeo3ltXju0zfeuOQiz39XEF?usp=drive_link)
+3. Insert model file, where the file path should be put into folder ```Customer-feedback-analysis-software-demo/model```
 4. Run ```main.py``` to start the demo.
 
 ## Trained Source Used
