@@ -174,6 +174,7 @@ class Ui_software_widget(object):
         self.console.setMaximumSize(QSize(292, 149))
         self.console.setStyleSheet(u"background : #dddddd; padding : 10px;")
         self.console.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.console.setWordWrap(True)
 
         self.verticalLayout_4.addWidget(self.console)
 
@@ -186,6 +187,7 @@ class Ui_software_widget(object):
         self.result_label.setMaximumSize(QSize(550, 16777215))
         self.result_label.setStyleSheet(u"background : white; padding : 10px;")
         self.result_label.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
+        self.result_label.setWordWrap(True)
 
         self.horizontalLayout_4.addWidget(self.result_label)
 

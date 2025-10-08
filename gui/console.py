@@ -7,5 +7,5 @@ class Console:
 
     def console_writing(self, text):
         current_text = self.main_window.console.text()
-        new_text = current_text + str(text) + '\n'
+        new_text = current_text + str(text) + "                   "
         self.main_window.console.setText(new_text)
