@@ -5,7 +5,6 @@ from gui.ui_function import Ui_function
 from gui.ui_main import Ui_software_widget
 
 
-
 class Demo_gui(QWidget, Ui_software_widget):
     def __init__(self):
         super().__init__()
@@ -13,13 +12,14 @@ class Demo_gui(QWidget, Ui_software_widget):
         self.ui_function = Ui_function(self)
 
         # picture area button event
-        self.qt_img = self.select_picture.clicked.connect(self.ui_function.get_img)  # return image file
-        self.pic_analyse_btn.clicked.connect(lambda : self.ui_function.picture_analyse(self.qt_img))
+        self.select_picture.clicked.connect(self.ui_function.get_img)  # return image file
+        self.pic_analyse_btn.clicked.connect(lambda : self.ui_function.picture_analyse(self.ui_function.file_path))
 
         # text area button event
         self.text_analyse_btn.clicked.connect(self.ui_function.text_analyse)
 
         # result area button event
+        self.analyse_all.clicked.connect(lambda : self.ui_function.aggregate_analyse(img_path = self.ui_function.file_path))
         self.clear_result.clicked.connect(self.ui_function.clear_result)
 
 

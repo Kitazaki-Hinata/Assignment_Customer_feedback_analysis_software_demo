@@ -2,12 +2,9 @@
 
 print("Importing packages, please wait...")
 import torch
-from typing import Optional
 from torch.utils.data import Dataset, DataLoader
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, get_linear_schedule_with_warmup
 from torch.optim import AdamW
-import pandas as pd
-import numpy as np
 from sklearn.metrics import accuracy_score, f1_score
 import warnings
 warnings.filterwarnings('ignore')
@@ -62,9 +59,10 @@ class BERTTrainer:
         self.model_name : str = model_name
         self.num_labels : int = num_labels
         self.max_length : int = max_length
+        print("Enabled CUDA : " + str(torch.cuda.is_available()))   # test whether CUDA is available, faster to use GPU
         self.device : torch.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-        # 初始化tokenizer和模型
+        # initialize model and tokenizer
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForSequenceClassification.from_pretrained(
             model_name,
@@ -90,7 +88,6 @@ class BERTTrainer:
             self.val_loader = None
 
     def train(self, epochs=3, learning_rate=2e-5):
-        '''epoch : loop times'''
         optimizer = AdamW(self.model.parameters(), lr=learning_rate)
         total_steps = len(self.train_loader) * epochs
         scheduler = get_linear_schedule_with_warmup(
@@ -127,16 +124,15 @@ class BERTTrainer:
 
             avg_loss = total_loss / len(self.train_loader)
 
-            # verify
+            # verify, using method evaluate
             if self.val_loader:
                 val_accuracy, val_f1 = self.evaluate()
-                print(f'Epoch {epoch+1}/{epochs}')
-                print(f'Training Loss: {avg_loss:.4f}')
-                print(f'Validation Accuracy: {val_accuracy:.4f}, F1: {val_f1:.4f}')
+                print(f'Finished : Epoch {epoch+1}/{epochs}')
+                print(f'Current Training Loss : {avg_loss:.4f}')
+                print(f'Validation Accuracy : {val_accuracy:.4f}, F1: {val_f1:.4f}')
             else:
                 print(f'Epoch {epoch+1}/{epochs}, Loss: {avg_loss:.4f}')
-
-            print('-' * 50)
+            print('-' * 45)    # separate line
 
     def evaluate(self):
         if not self.val_loader:
@@ -168,7 +164,7 @@ class BERTTrainer:
         return accuracy, f1
 
 
-    ################
+    # -----------------------------------------------
     # reasoning part
 
     def text_analyser(self, texts):

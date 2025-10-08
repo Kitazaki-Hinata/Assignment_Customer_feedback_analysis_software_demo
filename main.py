@@ -1,5 +1,9 @@
 '''demo of the AI analysis part'''
 
+import os
+# 设置环境变量以允许加载模型
+os.environ["TRUST_REMOTE_CODE"] = "1"
+
 from PySide6.QtWidgets import QApplication
 from gui.ui_mainwindow import Demo_gui
 
