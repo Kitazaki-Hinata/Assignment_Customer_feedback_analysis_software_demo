@@ -74,6 +74,8 @@ class Ui_function(object):
             final_prediction : int = 1
 
         final_confidence = abs(weight_avg_confidence)
+        if final_confidence >= 1:
+            final_confidence = confidences_pipe
 
         # then output text and show in the label widget
         label_map = {0: "Negative", 1: "Neutral", 2: "Positive"}
