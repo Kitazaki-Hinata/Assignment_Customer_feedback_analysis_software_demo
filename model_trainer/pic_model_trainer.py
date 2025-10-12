@@ -32,7 +32,6 @@ class ResNet50DefectDetector:
         self.model.to(device)
         self.model.eval()
 
-        # 图像预处理
         self.transform = ResNet50_Weights.IMAGENET1K_V2.transforms()
         self.console.console_writing("Image preprocessing pipeline initialized.")
         print(f"ResNet50 Defect Detector loaded successfully on {device}")

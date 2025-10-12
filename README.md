@@ -40,3 +40,32 @@ pip install anomalib[vlm_clip]
 1. Mark Kaghazgarian : Sentiment Labelled Sentences Data Set, Kaggle. [Redirect](https://www.kaggle.com/datasets/marklvl/sentiment-labelled-sentences-data-set?resource=download)
 2. Rahul Kumar : Sentiment Labelled Sentences Data Set, Kaggle. [Redirect](https://www.kaggle.com/datasets/rahulin05/sentiment-labelled-sentences-data-set/data)
 3. Wali M. Ahmad : Amazon Sentiment Spectrum: Reviews Dataset. [Redirect](https://www.kaggle.com/datasets/walimuhammadahmad/amazone-reviews/data)
+
+***
+
+## Project Structure
+
+### 1. Root Directory
+- [main.py](main.py) - Main entry point to start the demo application
+- [pyproject.toml](pyproject.toml) - Project dependencies and configuration
+- [README.md](README.md) - Project documentation
+
+### 2. GUI Module ([gui/](gui/))
+Contains all user interface related files:
+
+- [console.py](gui/console.py) - Handles text output to the GUI console widget
+- [ui_function.py](gui/ui_function.py) - Button and Widget slot functions
+- [ui_main.py](gui/ui_main.py) GUI code,  using PySide6 (PyQt)
+- [ui_mainwindow.py](gui/ui_mainwindow.py) - Main window class that connects UI elements with their functions
+
+### 3. Model Directory ([model/](model/))
+**Model Files should be pasted in this folder!**</br>
+Contains pre-trained models and tokenizer configurations:
+
+### 4. Model Trainer Module ([model_trainer/](model_trainer/))
+Contains scripts for training models and performing inference:
+
+- [data_cleaning.py](model_trainer/data_cleaning.py) - Text data preprocessing and cleaning utilities
+- [main_model_train.py](model_trainer/main_model_train.py) - Main entry point for training the text sentiment analysis model
+- [pic_model_trainer.py](model_trainer/pic_model_trainer.py) - Implementation of ResNet50-based image anomaly detector
+- [text_model_trainer.py](model_trainer/text_model_trainer.py) - Implementation of BERT-based text sentiment analyzer
